@@ -1,0 +1,22 @@
+{
+  "name": "eslint-plugin-react-hook-form",
+  "version": "0.0.0",
+  "description": "eslint plugin for react-hook-form",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andykao1213/eslint-plugin-react-hook-form.git"
+  },
+  "keywords": [
+    "react",
+    "eslint",
+    "react-hook-form"
+  ],
+  "author": "Andrew Kao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andykao1213/eslint-plugin-react-hook-form/issues"
+  },
+  "homepage": "https://github.com/andykao1213/eslint-plugin-react-hook-form#readme"
+}
