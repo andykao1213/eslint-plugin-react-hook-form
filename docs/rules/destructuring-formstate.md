@@ -28,7 +28,7 @@ NA
 
 ## When Not To Use It
 
-NA
+If your app is **always** running on the platform which doesn't support Proxy such as React Native or [legacy browsers](https://caniuse.com/proxy).
 
 ## Further Reading
 
