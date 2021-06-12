@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/andykao1213/eslint-plugin-react-hook-form/issues"
   },
-  "homepage": "https://github.com/andykao1213/eslint-plugin-react-hook-form#readme"
+  "homepage": "https://github.com/andykao1213/eslint-plugin-react-hook-form#readme",
+  "devDependencies": {
+    "eslint": "^7.28.0"
+  }
 }

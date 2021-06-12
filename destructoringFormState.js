@@ -6,6 +6,9 @@ module.exports = {
       category: "Possible Errors",
       url: "https://react-hook-form.com/api/useform/formstate",
     },
+    messages: {
+      useDestuctor: "Use desturctoring assignment for formState's properties.",
+    },
   },
   create: function (context) {
     return {
@@ -13,7 +16,7 @@ module.exports = {
         if (node.object.name === "formState") {
           return context.report({
             node: node.property,
-            message: "Use desturctoring assignment for formState's properties.",
+            messageId: "useDestuctor",
           });
         }
       },
