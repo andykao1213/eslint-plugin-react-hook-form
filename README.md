@@ -1,42 +1,41 @@
 # eslint-plugin-react-hook-form
 
-This ESlint plugin check if there is any issue with your [react-hook-form](https://github.com/react-hook-form/react-hook-form).
+[react-hook-form](https://github.com/react-hook-form/react-hook-form) is an awsome library which provide a neat solution for building forms. However, there are many rules for the API which may be missed by the developer. This plugin aims to check those rules automatically thourgh ESLint. Thus brings better DX for react-hook-form.
 
 ## Installation
 
-Assuming you already have ESLint installed, run:
+You'll first need to install [ESLint](http://eslint.org):
 
-```bash
-# npm
-npm install eslint-plugin-react-hook-form --save-dev
-
-# yarn
-yarn add eslint-plugin-react-hook-form --dev
+```
+$ npm i eslint --save-dev
 ```
 
-Then add the rules to the eslint config:
+Next, install `eslint-plugin-react-hook-form`:
 
-```js
+```
+$ npm install eslint-plugin-react-hook-form --save-dev
+```
+
+## Usage
+
+Add `react-hook-form` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
+
+```json
 {
-    "plugins": [
-        // ...
-        "eslint-plugin-react-hook-form"
-    ],
-    "rules": {
-        // ...
-        "react-hook-form/destructuring-formState": "error"
-    }
+  "plugins": ["react-hook-form"]
 }
 ```
 
-## The problem
+Then configure the rules you want to use under the rules section.
 
-[react-hook-form](https://github.com/react-hook-form/react-hook-form) is an awsome library which provide a neat solution for building forms. However, there are many rules for the API which may be missed by the developer. This plugin aims to check those rules automatically thourgh ESLint. Thus brings better DX for react-hook-form.
+```json
+{
+  "rules": {
+    "react-hook-form/destructuring-formState": "error"
+  }
+}
+```
 
 ## Supported Rules
 
-### Possible Errors
-
-| Rule Name               |                      Description                       |
-| ----------------------- | :----------------------------------------------------: |
-| destructuring-formState | enforce the properties of formState being destructored |
+- [destructuring-formState](docs/rules/destructuring-formstate.md)
