@@ -21,7 +21,7 @@ ruleTester.run("destructuring-formstate", rule, {
     {
       code: `
         function Component() {
-          const {formState: {isDirty}} = useFrom();
+          const {formState: {isDirty}} = useForm();
           console.log(isDirty);
           return null;
         }
@@ -34,12 +34,16 @@ ruleTester.run("destructuring-formstate", rule, {
     {
       code: `
         function Component() {
-          const {formState} = useFrom();
-          console.log(formState.isDirty);
+          const {formState: fs, register} = useForm();
+          console.log(fs.isDirty);
+          console.log(fs.errors);
           return null;
         }
       `,
       errors: [
+        {
+          messageId: "useDestuctor",
+        },
         {
           messageId: "useDestuctor",
         },
