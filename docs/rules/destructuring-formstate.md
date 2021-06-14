@@ -14,12 +14,21 @@ Examples of **incorrect** code for this rule:
 return <button disabled={!formState.isDirty || !formState.isValid} />;
 ```
 
+```js
+const formState = useFormState(); // ❌ should deconstruct the formState
+formState.isDirty; // ❌ subscription will be one render behind.
+```
+
 Examples of **correct** code for this rule:
 
 ```jsx
 // ✅ read all formState values to subscribe to changes
 const { isDirty, isValid } = formState;
 return <button disabled={!isDirty || !isValid} />;
+```
+
+```js
+const { isDirty } = useFormState(); // ✅
 ```
 
 ### Options
@@ -32,4 +41,5 @@ If your app is **always** running on the platform which doesn't support Proxy su
 
 ## Further Reading
 
-[Document of React-Hook-Form - formState](https://react-hook-form.com/api/useform/formstate)
+[Document of React-Hook-Form - `formState`](https://react-hook-form.com/api/useform/formstate)
+[Document of React-Hook-Form - `useFormState`](https://react-hook-form.com/api/useformstate)
