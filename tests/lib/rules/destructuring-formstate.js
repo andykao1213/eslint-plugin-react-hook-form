@@ -37,6 +37,15 @@ ruleTester.run("destructuring-formstate", rule, {
         }
     `,
     },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const {isDirty} = useFormState();
+          console.log(isDirty);
+          return null;
+        }
+      `,
+    },
   ],
 
   invalid: [
@@ -81,6 +90,24 @@ ruleTester.run("destructuring-formstate", rule, {
           column: 18,
           endLine: 4,
           endColumn: 25,
+        },
+      ],
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const formState = useFormState();
+          console.log(formState.isDirty);
+          return null;
+        }
+      `,
+      errors: [
+        {
+          messageId: "useDestuctor",
+          line: 4,
+          column: 25,
+          endLine: 4,
+          endColumn: 32,
         },
       ],
     },
