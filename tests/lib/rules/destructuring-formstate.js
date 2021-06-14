@@ -1,5 +1,5 @@
 /**
- * @fileoverview Use desturcturing assignment to access the properties of formState. This ensure the hook has subscribed to the changes of the states.
+ * @fileoverview Use destructuring assignment to access the properties of formState. This ensure the hook has subscribed to the changes of the states.
  * @author Andrew Kao
  */
 "use strict";
@@ -11,30 +11,92 @@
 const rule = require("../../../lib/rules/destructuring-formstate"),
   RuleTester = require("eslint").RuleTester;
 
+const normalizeIndent = require("../utils/normalizeIndent");
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-const ruleTester = new RuleTester();
+const ruleTester = new RuleTester({ parserOptions: { ecmaVersion: 6 } });
 ruleTester.run("destructuring-formstate", rule, {
   valid: [
     {
-      code: `
+      code: normalizeIndent`
         function Component() {
-          const {formState: {isDirty}} = useFrom();
+          const {formState: {isDirty}} = useForm();
           console.log(isDirty);
           return null;
         }
     `,
-      parserOptions: { ecmaVersion: 6 },
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const formState = {isDirty: true};
+          console.log(formState.isDirty);
+          return null;
+        }
+    `,
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const {isDirty} = useFormState();
+          console.log(isDirty);
+          return null;
+        }
+      `,
     },
   ],
 
   invalid: [
     {
-      code: `
+      code: normalizeIndent`
         function Component() {
-          const {formState} = useFrom();
+          const {formState, register} = useForm();
+          console.log(formState.isDirty);
+          console.log(formState.errors);
+          return null;
+        }
+      `,
+      errors: [
+        {
+          messageId: "useDestuctor",
+          line: 4,
+          column: 25,
+          endLine: 4,
+          endColumn: 32,
+        },
+        {
+          messageId: "useDestuctor",
+          line: 5,
+          column: 25,
+          endLine: 5,
+          endColumn: 31,
+        },
+      ],
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const {formState: fs, register} = useForm();
+          console.log(fs.isDirty);
+          return null;
+        }
+      `,
+      errors: [
+        {
+          messageId: "useDestuctor",
+          line: 4,
+          column: 18,
+          endLine: 4,
+          endColumn: 25,
+        },
+      ],
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const formState = useFormState();
           console.log(formState.isDirty);
           return null;
         }
@@ -42,9 +104,12 @@ ruleTester.run("destructuring-formstate", rule, {
       errors: [
         {
           messageId: "useDestuctor",
+          line: 4,
+          column: 25,
+          endLine: 4,
+          endColumn: 32,
         },
       ],
-      parserOptions: { ecmaVersion: 6 },
     },
   ],
 });
