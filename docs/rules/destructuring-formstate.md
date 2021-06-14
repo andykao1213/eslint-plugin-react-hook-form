@@ -1,10 +1,10 @@
-# Use desturcturing assignment to access the properties of formState. (destructuring-formstate)
+# Use destructuring assignment to access the properties of formState. (destructuring-formstate)
 
-This ensure the hook has subscribed to the changes of the states.
+This ensures the hook has subscribed to the changes of the states.
 
 ## Rule Details
 
-Since the `formState` is wrapped with a [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) to improve the render performance, it requires to `get` `fomrState`'s properties in the first render. So the component can aware of the state change and renders correctly. We suggest to use destructoring assignment to make sure the state has been subscribed.
+Since the `formState` is wrapped with a [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) to improve the render performance, it requires to `get` `fomrState`'s properties in the first render. So the component can aware of the state change and renders correctly. We suggest using destructuring assignment to make sure the state has been subscribed.
 
 Examples of **incorrect** code for this rule:
 

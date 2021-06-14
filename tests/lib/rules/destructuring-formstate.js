@@ -1,5 +1,5 @@
 /**
- * @fileoverview Use desturcturing assignment to access the properties of formState. This ensure the hook has subscribed to the changes of the states.
+ * @fileoverview Use destructuring assignment to access the properties of formState. This ensure the hook has subscribed to the changes of the states.
  * @author Andrew Kao
  */
 "use strict";
