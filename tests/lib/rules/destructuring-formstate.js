@@ -11,44 +11,78 @@
 const rule = require("../../../lib/rules/destructuring-formstate"),
   RuleTester = require("eslint").RuleTester;
 
+const normalizeIndent = require("../utils/normalizeIndent");
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-const ruleTester = new RuleTester();
+const ruleTester = new RuleTester({ parserOptions: { ecmaVersion: 6 } });
 ruleTester.run("destructuring-formstate", rule, {
   valid: [
     {
-      code: `
+      code: normalizeIndent`
         function Component() {
           const {formState: {isDirty}} = useForm();
           console.log(isDirty);
           return null;
         }
     `,
-      parserOptions: { ecmaVersion: 6 },
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const formState = {isDirty: true};
+          console.log(formState.isDirty);
+          return null;
+        }
+    `,
     },
   ],
 
   invalid: [
     {
-      code: `
+      code: normalizeIndent`
         function Component() {
-          const {formState: fs, register} = useForm();
-          console.log(fs.isDirty);
-          console.log(fs.errors);
+          const {formState, register} = useForm();
+          console.log(formState.isDirty);
+          console.log(formState.errors);
           return null;
         }
       `,
       errors: [
         {
           messageId: "useDestuctor",
+          line: 4,
+          column: 25,
+          endLine: 4,
+          endColumn: 32,
         },
         {
           messageId: "useDestuctor",
+          line: 5,
+          column: 25,
+          endLine: 5,
+          endColumn: 31,
         },
       ],
-      parserOptions: { ecmaVersion: 6 },
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const {formState: fs, register} = useForm();
+          console.log(fs.isDirty);
+          return null;
+        }
+      `,
+      errors: [
+        {
+          messageId: "useDestuctor",
+          line: 4,
+          column: 18,
+          endLine: 4,
+          endColumn: 25,
+        },
+      ],
     },
   ],
 });
