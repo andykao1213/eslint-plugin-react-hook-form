@@ -39,3 +39,4 @@ Then configure the rules you want to use under the rules section.
 ## Supported Rules
 
 - [destructuring-formState](docs/rules/destructuring-formstate.md)
+- [no-access-control](docs/rules/no-access-control.md)
