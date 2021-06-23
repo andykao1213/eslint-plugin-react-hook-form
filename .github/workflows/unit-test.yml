@@ -1,9 +1,9 @@
-name: Pull Request CI
+name: Unit Test
 
 on: [pull_request]
 
 jobs:
-  build:
+  unit-test:
     runs-on: ubuntu-latest
 
     strategy:
