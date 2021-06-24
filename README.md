@@ -40,3 +40,4 @@ Then configure the rules you want to use under the rules section.
 
 - [destructuring-formState](docs/rules/destructuring-formstate.md)
 - [no-access-control](docs/rules/no-access-control.md)
+- [no-nested-object-setvalue](docs/rules/no-nested-object-setvalue.md)
