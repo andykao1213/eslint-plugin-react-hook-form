@@ -18,7 +18,11 @@ setValue("yourDetails.firstName", "value");
 
 ### Options
 
-NA
+#### `bracketAsArrayIndex`
+
+- type: boolean
+- default: false
+  In V7, the path of index doesn't contain bracket(e.g. `fields.0.value`). However, bracket is required in V6 (`fields[0].value`). This option let user config whether to add bracket for an array index while applying the fix.
 
 ## When Not To Use It
 
