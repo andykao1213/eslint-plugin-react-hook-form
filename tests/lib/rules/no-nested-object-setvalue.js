@@ -101,5 +101,30 @@ ruleTester.run("no-nested-object-setvalue", rule, {
         setValue('field1.field2.field5.1.field6', 4)
       `,
     },
+    {
+      code: normalizeIndent`
+        const {setValue} = useForm()
+        setValue('field1', { field2: [{field3: 'value1'}, {field3: 'value2'}] })
+      `,
+      options: [
+        {
+          bracketAsArrayIndex: true,
+        },
+      ],
+      errors: [
+        {
+          messageId: "noNestedObj",
+          line: 3,
+          column: 20,
+          endLine: 3,
+          endColumn: 72,
+        },
+      ],
+      output: normalizeIndent`
+        const {setValue} = useForm()
+        setValue('field1.field2[0].field3', 'value1')
+        setValue('field1.field2[1].field3', 'value2')
+      `,
+    },
   ],
 });
