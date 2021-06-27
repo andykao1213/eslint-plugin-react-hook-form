@@ -43,8 +43,8 @@ ruleTester.run("no-nested-object-setvalue", rule, {
   invalid: [
     {
       code: normalizeIndent`
-        const {setValue} = useForm();
-        setValue('yourDetails', { firstName: 'value' });
+        const {setValue} = useForm()
+        setValue('yourDetails', { firstName: 'value' })
       `,
       errors: [
         {
@@ -55,11 +55,15 @@ ruleTester.run("no-nested-object-setvalue", rule, {
           endColumn: 47,
         },
       ],
+      output: normalizeIndent`
+        const {setValue} = useForm()
+        setValue('yourDetails.firstName', 'value')
+      `,
     },
     {
       code: normalizeIndent`
-        const {setValue: s} = useForm();
-        s('yourDetails', { firstName: 'value' });
+        const {setValue: s} = useForm()
+        s('yourDetails', { firstName: 'value' })
       `,
       errors: [
         {
@@ -70,6 +74,32 @@ ruleTester.run("no-nested-object-setvalue", rule, {
           endColumn: 40,
         },
       ],
+      output: normalizeIndent`
+        const {setValue: s} = useForm()
+        s('yourDetails.firstName', 'value')
+      `,
+    },
+    {
+      code: normalizeIndent`
+        const {setValue} = useForm()
+        setValue('field1', { field2: { field4: 'value2', field5: [{field6: 'value3'}, {field6: 4}] }, field3: 'value1' })
+      `,
+      errors: [
+        {
+          messageId: "noNestedObj",
+          line: 3,
+          column: 20,
+          endLine: 3,
+          endColumn: 113,
+        },
+      ],
+      output: normalizeIndent`
+        const {setValue} = useForm()
+        setValue('field1.field3', 'value1')
+        setValue('field1.field2.field4', 'value2')
+        setValue('field1.field2.field5.0.field6', 'value3')
+        setValue('field1.field2.field5.1.field6', 4)
+      `,
     },
   ],
 });
