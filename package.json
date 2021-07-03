@@ -9,8 +9,9 @@
     "eslintplugin",
     "eslint-plugin"
   ],
-  "author": "Andrew Kao",
+  "author": "Andrew Kao <andykao1213@gmail.com>",
   "main": "lib/index.js",
+  "repository": "https://github.com/andykao1213/eslint-plugin-react-hook-form.git",
   "scripts": {
     "test": "mocha tests --recursive",
     "release": "standard-version"
