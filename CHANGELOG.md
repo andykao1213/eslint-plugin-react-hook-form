@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.3](https://github.com/andykao1213/eslint-plugin-react-hook-form/compare/v0.2.2...v0.2.3) (2022-02-28)
+
+
+### Bug Fixes
+
+* handle different cases of the id of VariableDeclarator ([#15](https://github.com/andykao1213/eslint-plugin-react-hook-form/issues/15)) ([d04638b](https://github.com/andykao1213/eslint-plugin-react-hook-form/commit/d04638bee6263af7b494f488a15a75036f75ce92)), closes [#13](https://github.com/andykao1213/eslint-plugin-react-hook-form/issues/13) [#14](https://github.com/andykao1213/eslint-plugin-react-hook-form/issues/14) [#13](https://github.com/andykao1213/eslint-plugin-react-hook-form/issues/13) [#14](https://github.com/andykao1213/eslint-plugin-react-hook-form/issues/14)
+
 ### [0.2.2](https://github.com/andykao1213/eslint-plugin-react-hook-form/compare/v0.2.1...v0.2.2) (2022-01-16)
 
 
