@@ -18,7 +18,7 @@ const normalizeIndent = require("../utils/normalizeIndent");
 
 const ruleTester = new RuleTester({
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 9,
     ecmaFeatures: {
       jsx: true,
     },
@@ -41,6 +41,20 @@ ruleTester.run("no-access-control", rule, {
             return <Controller control={c} />
         }
     `,
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const formMethods = useForm();
+        }
+      `,
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const {watch, ...restFormMethods} = useFormState();
+        }
+      `,
     },
   ],
   invalid: [
