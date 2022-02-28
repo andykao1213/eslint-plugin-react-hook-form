@@ -18,7 +18,7 @@ const normalizeIndent = require("../utils/normalizeIndent");
 
 const ruleTester = new RuleTester({
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 9,
     ecmaFeatures: {
       jsx: true,
     },
@@ -36,6 +36,20 @@ ruleTester.run("no-nested-object-setvalue", rule, {
       code: normalizeIndent`
         const [value, setValue] = useState();
         setValue('yourDetails', { firstName: 'value' });
+      `,
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const formMethods = useForm();
+        }
+      `,
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const {watch, ...restFormMethods} = useFormState();
+        }
       `,
     },
   ],

@@ -16,7 +16,7 @@ const normalizeIndent = require("../utils/normalizeIndent");
 // Tests
 //------------------------------------------------------------------------------
 
-const ruleTester = new RuleTester({ parserOptions: { ecmaVersion: 6 } });
+const ruleTester = new RuleTester({ parserOptions: { ecmaVersion: 9 } });
 ruleTester.run("destructuring-formstate", rule, {
   valid: [
     {
@@ -43,6 +43,20 @@ ruleTester.run("destructuring-formstate", rule, {
           const {isDirty} = useFormState();
           console.log(isDirty);
           return null;
+        }
+      `,
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const formMethods = useForm();
+        }
+      `,
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const {watch, ...restFormMethods} = useFormState();
         }
       `,
     },
