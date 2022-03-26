@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.4](https://github.com/andykao1213/eslint-plugin-react-hook-form/compare/v0.2.3...v0.2.4) (2022-03-26)
+
+
+### Bug Fixes
+
+* **no-nested-object-setvalue:** only throw error for Array & Object expressions ([#18](https://github.com/andykao1213/eslint-plugin-react-hook-form/issues/18)) ([0e51834](https://github.com/andykao1213/eslint-plugin-react-hook-form/commit/0e51834feab79c9691f4cded8fc5907edfabaa9b)), closes [#17](https://github.com/andykao1213/eslint-plugin-react-hook-form/issues/17)
+
 ### [0.2.3](https://github.com/andykao1213/eslint-plugin-react-hook-form/compare/v0.2.2...v0.2.3) (2022-02-28)
 
 
