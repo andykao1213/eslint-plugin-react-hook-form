@@ -40,6 +40,20 @@ ruleTester.run("no-nested-object-setvalue", rule, {
     },
     {
       code: normalizeIndent`
+        const {setValue} = useForm();
+        const myFunc = () => 10
+        setValue('yourDetails', myFunc);
+      `,
+    },
+    {
+      code: normalizeIndent`
+        const {setValue} = useForm();
+        const myVar = 10
+        setValue('yourDetails', myVar);
+      `,
+    },
+    {
+      code: normalizeIndent`
         function Component() {
           const formMethods = useForm();
         }
