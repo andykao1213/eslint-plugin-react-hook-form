@@ -74,14 +74,14 @@ ruleTester.run("destructuring-formstate", rule, {
       `,
       errors: [
         {
-          messageId: "useDestuctor",
+          messageId: "useDestructure",
           line: 4,
           column: 25,
           endLine: 4,
           endColumn: 32,
         },
         {
-          messageId: "useDestuctor",
+          messageId: "useDestructure",
           line: 5,
           column: 25,
           endLine: 5,
@@ -99,7 +99,7 @@ ruleTester.run("destructuring-formstate", rule, {
       `,
       errors: [
         {
-          messageId: "useDestuctor",
+          messageId: "useDestructure",
           line: 4,
           column: 18,
           endLine: 4,
@@ -117,7 +117,7 @@ ruleTester.run("destructuring-formstate", rule, {
       `,
       errors: [
         {
-          messageId: "useDestuctor",
+          messageId: "useDestructure",
           line: 4,
           column: 25,
           endLine: 4,
