@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.5](https://github.com/andykao1213/eslint-plugin-react-hook-form/compare/v0.2.4...v0.2.5) (2022-11-18)
+
+
+### Bug Fixes
+
+* Fix typos ([#19](https://github.com/andykao1213/eslint-plugin-react-hook-form/issues/19)) ([4e83886](https://github.com/andykao1213/eslint-plugin-react-hook-form/commit/4e8388661698ef6e8e4fc5f7e7ea3e84f22db631))
+
 ### [0.2.4](https://github.com/andykao1213/eslint-plugin-react-hook-form/compare/v0.2.3...v0.2.4) (2022-03-26)
 
 
