@@ -34,7 +34,7 @@ Then configure the rules you want to use under the rules section.
 ```json
 {
   "rules": {
-    "react-hook-form/destructuring-formState": "error"
+    "react-hook-form/destructuring-formstate": "error"
   }
 }
 ```
@@ -51,7 +51,7 @@ or start with the recommended rule set:
 
 | Rule                                                                 | Description                                                           | Recommended | Fixable |
 | -------------------------------------------------------------------- | --------------------------------------------------------------------- | ----------- | ------- |
-| [destructuring-formState](docs/rules/destructuring-formstate.md)     | Use destructuring assignment to access the properties of `formState`. | ⛔️         |         |
+| [destructuring-formstate](docs/rules/destructuring-formstate.md)     | Use destructuring assignment to access the properties of `formState`. | ⛔️         |         |
 | [no-access-control](docs/rules/no-access-control.md)                 | Avoid accessing the properties of `control`                           | ⛔️         |         |
 | [no-nested-object-setvalue](docs/rules/no-nested-object-setvalue.md) | Avoid nested object in second argument of `setValue`                  | ⛔️         | 🔧      |
 
