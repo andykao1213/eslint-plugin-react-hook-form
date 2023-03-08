@@ -66,6 +66,33 @@ ruleTester.run("no-nested-object-setvalue", rule, {
         }
       `,
     },
+    {
+      code: normalizeIndent`
+        const {setValue} = useFormContext();
+        setValue('yourDetails.firstName', 'value');
+      `,
+    },
+    {
+      code: normalizeIndent`
+        const {setValue} = useFormContext();
+        const myFunc = () => 10
+        setValue('yourDetails', myFunc);
+      `,
+    },
+    {
+      code: normalizeIndent`
+        const {setValue} = useFormContext();
+        const myVar = 10
+        setValue('yourDetails', myVar);
+      `,
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const formMethods = useFormContext();
+        }
+      `,
+    },
   ],
 
   invalid: [
@@ -150,6 +177,91 @@ ruleTester.run("no-nested-object-setvalue", rule, {
       ],
       output: normalizeIndent`
         const {setValue} = useForm()
+        setValue('field1.field2[0].field3', 'value1')
+        setValue('field1.field2[1].field3', 'value2')
+      `,
+    },
+    {
+      code: normalizeIndent`
+        const {setValue} = useFormContext()
+        setValue('yourDetails', { firstName: 'value' })
+      `,
+      errors: [
+        {
+          messageId: "noNestedObj",
+          line: 3,
+          column: 25,
+          endLine: 3,
+          endColumn: 47,
+        },
+      ],
+      output: normalizeIndent`
+        const {setValue} = useFormContext()
+        setValue('yourDetails.firstName', 'value')
+      `,
+    },
+    {
+      code: normalizeIndent`
+        const {setValue: s} = useFormContext()
+        s('yourDetails', { firstName: 'value' })
+      `,
+      errors: [
+        {
+          messageId: "noNestedObj",
+          line: 3,
+          column: 18,
+          endLine: 3,
+          endColumn: 40,
+        },
+      ],
+      output: normalizeIndent`
+        const {setValue: s} = useFormContext()
+        s('yourDetails.firstName', 'value')
+      `,
+    },
+    {
+      code: normalizeIndent`
+        const {setValue} = useFormContext()
+        setValue('field1', { field2: { field4: 'value2', field5: [{field6: 'value3'}, {field6: 4}] }, field3: 'value1' })
+      `,
+      errors: [
+        {
+          messageId: "noNestedObj",
+          line: 3,
+          column: 20,
+          endLine: 3,
+          endColumn: 113,
+        },
+      ],
+      output: normalizeIndent`
+        const {setValue} = useFormContext()
+        setValue('field1.field3', 'value1')
+        setValue('field1.field2.field4', 'value2')
+        setValue('field1.field2.field5.0.field6', 'value3')
+        setValue('field1.field2.field5.1.field6', 4)
+      `,
+    },
+    {
+      code: normalizeIndent`
+        const {setValue} = useFormContext()
+        setValue('field1', { field2: [{field3: 'value1'}, {field3: 'value2'}] })
+      `,
+      options: [
+        {
+          bracketAsArrayIndex: true,
+        },
+      ],
+      errors: [
+        {
+          messageId: "noNestedObj",
+          line: 3,
+          column: 20,
+          endLine: 3,
+          endColumn: 72,
+        },
+      ],
+      output: normalizeIndent`
+        const {setValue} = useFormContext()
         setValue('field1.field2[0].field3', 'value1')
         setValue('field1.field2[1].field3', 'value2')
       `,

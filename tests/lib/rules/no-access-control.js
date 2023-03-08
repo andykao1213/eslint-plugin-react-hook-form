@@ -56,6 +56,29 @@ ruleTester.run("no-access-control", rule, {
         }
       `,
     },
+    {
+      code: normalizeIndent`
+        function Component(){
+            const {control} = useFormContext();
+            return <Controller control={control} />
+        }
+      `,
+    },
+    {
+      code: normalizeIndent`
+        function Component(){
+            const {control: c} = useFormContext();
+            return <Controller control={c} />
+        }
+    `,
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const formMethods = useFormContext();
+        }
+      `,
+    },
   ],
   invalid: [
     {
@@ -79,6 +102,40 @@ ruleTester.run("no-access-control", rule, {
       code: normalizeIndent`
         function Component(){
             const {control:c} = useForm();
+            console.log(c.defaultValuesRef);
+        }
+      `,
+      errors: [
+        {
+          messageId: "noAccessControl",
+          line: 4,
+          column: 19,
+          endLine: 4,
+          endColumn: 35,
+        },
+      ],
+    },
+    {
+      code: normalizeIndent`
+        function Component(){
+            const {control} = useFormContext();
+            console.log(control.defaultValuesRef);
+        }
+    `,
+      errors: [
+        {
+          messageId: "noAccessControl",
+          line: 4,
+          column: 25,
+          endLine: 4,
+          endColumn: 41,
+        },
+      ],
+    },
+    {
+      code: normalizeIndent`
+        function Component(){
+            const {control:c} = useFormContext();
             console.log(c.defaultValuesRef);
         }
       `,
