@@ -60,6 +60,22 @@ ruleTester.run("destructuring-formstate", rule, {
         }
       `,
     },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const {formState: {isDirty}} = useFormContext();
+          console.log(isDirty);
+          return null;
+        }
+    `,
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const formMethods = useFormContext();
+        }
+      `,
+    },
   ],
 
   invalid: [
@@ -122,6 +138,50 @@ ruleTester.run("destructuring-formstate", rule, {
           column: 25,
           endLine: 4,
           endColumn: 32,
+        },
+      ],
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const {formState, register} = useFormContext();
+          console.log(formState.isDirty);
+          console.log(formState.errors);
+          return null;
+        }
+      `,
+      errors: [
+        {
+          messageId: "useDestructure",
+          line: 4,
+          column: 25,
+          endLine: 4,
+          endColumn: 32,
+        },
+        {
+          messageId: "useDestructure",
+          line: 5,
+          column: 25,
+          endLine: 5,
+          endColumn: 31,
+        },
+      ],
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const {formState: fs, register} = useFormContext();
+          console.log(fs.isDirty);
+          return null;
+        }
+      `,
+      errors: [
+        {
+          messageId: "useDestructure",
+          line: 4,
+          column: 18,
+          endLine: 4,
+          endColumn: 25,
         },
       ],
     },
