@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/eslint-plugin-react-hook-form?style=flat-square)](https://www.npmjs.com/package/eslint-plugin-react-hook-form)
 [![GitHub](https://img.shields.io/github/license/andykao1213/eslint-plugin-react-hook-form?style=flat-square)](LICENSE)
 
-[react-hook-form](https://github.com/react-hook-form/react-hook-form) is an awsome library which provide a neat solution for building forms. However, there are many rules for the API which may be missed by the developer. This plugin aims to check those rules automatically thourgh ESLint. Thus brings better DX for react-hook-form.
+[react-hook-form](https://github.com/react-hook-form/react-hook-form) is an awesome library which provide a neat solution for building forms. However, there are many rules for the API which may be missed by the developer. This plugin aims to check those rules automatically through ESLint. Thus brings better DX for react-hook-form.
 
 ## Installation
 
