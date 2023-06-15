@@ -16,7 +16,14 @@ const normalizeIndent = require("../utils/normalizeIndent");
 // Tests
 //------------------------------------------------------------------------------
 
-const ruleTester = new RuleTester({ parserOptions: { ecmaVersion: 9 } });
+const ruleTester = new RuleTester({
+  parserOptions: {
+    ecmaVersion: 9,
+    ecmaFeatures: {
+      jsx: true
+    },
+  },
+});
 ruleTester.run("destructuring-formstate", rule, {
   valid: [
     {
@@ -31,8 +38,20 @@ ruleTester.run("destructuring-formstate", rule, {
     {
       code: normalizeIndent`
         function Component() {
+          const {formState: {isDirty}, fieldState: {isTouched}} = useController();
+          console.log(isDirty);
+          console.log(isTouched);
+          return null;
+        }
+      `,
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
           const formState = {isDirty: true};
+          const fieldState = {isTouched: true};
           console.log(formState.isDirty);
+          console.log(fieldState.isTouched);
           return null;
         }
     `,
@@ -73,6 +92,20 @@ ruleTester.run("destructuring-formstate", rule, {
       code: normalizeIndent`
         function Component() {
           const formMethods = useFormContext();
+        }
+      `,
+    },
+    {
+      // We do not examine the object being spread, but at least it should not cause an error.
+      code: normalizeIndent`
+        function Component() {
+          return (
+            <Controller
+              {...{render: ({formState, fieldState}) => (
+                <span>{formState.isDirty}{fieldState.isTouched}</span>
+              )}}
+            />
+          )
         }
       `,
     },
@@ -120,6 +153,145 @@ ruleTester.run("destructuring-formstate", rule, {
           column: 18,
           endLine: 4,
           endColumn: 25,
+        },
+      ],
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const {formState, fieldState} = useController();
+          console.log(formState.isDirty);
+          console.log(fieldState.isTouched);
+          return null;
+        }
+      `,
+      errors: [
+        {
+          messageId: "useDestructure",
+          line: 4,
+          column: 25,
+          endLine: 4,
+          endColumn: 32,
+        },
+        {
+          messageId: "useDestructure",
+          line: 5,
+          column: 26,
+          endLine: 5,
+          endColumn: 35,
+        },
+      ],
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const {formState: fs1, fieldState: fs2} = useController();
+          console.log(fs1.isDirty);
+          console.log(fs2.isTouched);
+          return null;
+        }
+      `,
+      errors: [
+        {
+          messageId: "useDestructure",
+          line: 4,
+          column: 19,
+          endLine: 4,
+          endColumn: 26,
+        },
+        {
+          messageId: "useDestructure",
+          line: 5,
+          column: 19,
+          endLine: 5,
+          endColumn: 28,
+        },
+      ],
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          return (
+            <Controller
+              render={({formState, fieldState}) => (
+                <span>{formState.isDirty}{fieldState.isTouched}</span>
+              )}
+            />
+          )
+        }
+      `,
+      errors: [
+        {
+          messageId: "useDestructure",
+          line: 6,
+          column: 26,
+          endLine: 6,
+          endColumn: 33,
+        },
+        {
+          messageId: "useDestructure",
+          line: 6,
+          column: 46,
+          endLine: 6,
+          endColumn: 55,
+        },
+      ],
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          return (
+            <Controller
+              render={({formState: fs1, fieldState: fs2}) => (
+                <span>{fs1.isDirty}{fs2.isTouched}</span>
+              )}
+            />
+          )
+        }
+      `,
+      errors: [
+        {
+          messageId: "useDestructure",
+          line: 6,
+          column: 20,
+          endLine: 6,
+          endColumn: 27,
+        },
+        {
+          messageId: "useDestructure",
+          line: 6,
+          column: 33,
+          endLine: 6,
+          endColumn: 42,
+        },
+      ],
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          return (
+            <Controller
+              render={function({formState, fieldState}) {
+                return <span>{formState.isDirty}{fieldState.isTouched}</span>
+              }}
+            />
+          )
+        }
+      `,
+      errors: [
+        {
+          messageId: "useDestructure",
+          line: 6,
+          column: 33,
+          endLine: 6,
+          endColumn: 40,
+        },
+        {
+          messageId: "useDestructure",
+          line: 6,
+          column: 53,
+          endLine: 6,
+          endColumn: 62,
         },
       ],
     },
