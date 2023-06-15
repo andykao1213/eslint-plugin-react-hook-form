@@ -218,6 +218,23 @@ ruleTester.run("destructuring-formstate", rule, {
     {
       code: normalizeIndent`
         function Component() {
+          const form = useForm();
+          console.log(form.formState.isDirty);
+        }
+      `,
+      errors: [
+        {
+          messageId: "useDestructure",
+          line: 4,
+          column: 30,
+          endLine: 4,
+          endColumn: 37,
+        },
+      ]
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
           const {formState, fieldState} = useController();
           console.log(formState.isDirty);
           console.log(fieldState.isTouched);
