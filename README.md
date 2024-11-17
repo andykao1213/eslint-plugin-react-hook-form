@@ -54,6 +54,7 @@ or start with the recommended rule set:
 | [destructuring-formstate](docs/rules/destructuring-formstate.md)     | Use destructuring assignment to access the properties of `formState`. | ⛔️         |         |
 | [no-access-control](docs/rules/no-access-control.md)                 | Avoid accessing the properties of `control`                           | ⛔️         |         |
 | [no-nested-object-setvalue](docs/rules/no-nested-object-setvalue.md) | Avoid nested object in second argument of `setValue`                  | ⛔️         | 🔧      |
+| [no-use-watch](docs/rules/no-use-watch.md)                           | Avoid using `watch`                                                   |             |         |
 
 ### Key
 
