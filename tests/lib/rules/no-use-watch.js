@@ -119,5 +119,43 @@ ruleTester.run("no-use-watch", rule, {
         },
       ],
     },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const form = useForm();
+          const {watch} = form;
+          console.log(watch());
+          return null;
+        }
+      `,
+      errors: [
+        {
+          messageId: "useUseWatch",
+          line: 4,
+          column: 10,
+          endLine: 4,
+          endColumn: 15,
+        },
+      ],
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const formContext = useFormContext();
+          const {watch} = formContext;
+          console.log(watch());
+          return null;
+        }
+      `,
+      errors: [
+        {
+          messageId: "useUseWatch",
+          line: 4,
+          column: 10,
+          endLine: 4,
+          endColumn: 15,
+        },
+      ],
+    },
   ],
 });
