@@ -23,7 +23,7 @@ ruleTester.run("no-use-watch", rule, {
       code: normalizeIndent`
         function Component() {
           const {control} = useForm();
-          uswWatch(control);
+          useWatch(control);
           return null;
         }
     `,
@@ -32,7 +32,7 @@ ruleTester.run("no-use-watch", rule, {
       code: normalizeIndent`
         function Component() {
           const {control} = useFormState();
-          uswWatch(control);
+          useWatch(control);
           return null;
         }
       `,
