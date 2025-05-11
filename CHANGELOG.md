@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1](https://github.com/andykao1213/eslint-plugin-react-hook-form/compare/v0.3.0...v0.3.1) (2025-05-11)
+
+
+### Features
+
+* **no-use-watch:** Add rule prohibiting use of watch ([#26](https://github.com/andykao1213/eslint-plugin-react-hook-form/issues/26)) ([efd04ce](https://github.com/andykao1213/eslint-plugin-react-hook-form/commit/efd04cef27ca0c6b870b1f272df68dbaa5cec8f1))
+
 ## [0.3.0](https://github.com/andykao1213/eslint-plugin-react-hook-form/compare/v0.2.5...v0.3.0) (2023-03-11)
 
 
