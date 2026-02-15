@@ -185,5 +185,67 @@ ruleTester.run("destructuring-formstate", rule, {
         },
       ],
     },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const methods = useForm();
+          console.log(methods.formState.isDirty);
+          return null;
+        }
+      `,
+      errors: [
+        {
+          messageId: "useDestructure",
+          line: 4,
+          column: 33,
+          endLine: 4,
+          endColumn: 40,
+        },
+      ],
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const methods = useForm();
+          console.log(methods.formState.isDirty);
+          console.log(methods.formState.errors);
+          return null;
+        }
+      `,
+      errors: [
+        {
+          messageId: "useDestructure",
+          line: 4,
+          column: 33,
+          endLine: 4,
+          endColumn: 40,
+        },
+        {
+          messageId: "useDestructure",
+          line: 5,
+          column: 33,
+          endLine: 5,
+          endColumn: 39,
+        },
+      ],
+    },
+    {
+      code: normalizeIndent`
+        function Component() {
+          const methods = useFormContext();
+          console.log(methods.formState.isDirty);
+          return null;
+        }
+      `,
+      errors: [
+        {
+          messageId: "useDestructure",
+          line: 4,
+          column: 33,
+          endLine: 4,
+          endColumn: 40,
+        },
+      ],
+    },
   ],
 });
